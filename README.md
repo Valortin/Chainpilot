@@ -102,8 +102,6 @@ The frontend is built with **React**, **TypeScript**, **Tailwind CSS**, and **Fr
 
 ---
 
----
-
 ## 🎨 UI Features
 
 * **Navbar**: Branded “Chainpilot” logo with animated entry.
@@ -188,4 +186,4 @@ Chainpilot lowers Web3 barriers with natural language interfaces, smart automati
 * **Wavehack/Buildathon**: The inspiration
 * **React, TypeScript, Tailwind, Framer Motion**: Frontend tech stack
 
-> 🔑 **Note**: Replace `YOUR_API_KEY` with your actual Nodit API key. For deployment, consider platforms like **Vercel** or **Netlify**.
+> 🔑 **Note**: Replace `YOUR_API_KEY` with your actual Nodit API key. 
