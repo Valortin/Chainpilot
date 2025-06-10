@@ -54,7 +54,8 @@ Chainpilot aligns with the Wavehack/Buildathon’s **AI + Automation** theme by:
 ## ⚙️ Installation
 
 1. **Clone the Repository**
-   ```bash
+
+```bash
    git clone https://github.com/Valortin/Chainpilot.git
    cd chainpilot
 ````
@@ -102,25 +103,6 @@ Chainpilot aligns with the Wavehack/Buildathon’s **AI + Automation** theme by:
    Visit `http://localhost:3000` to view the app.
 
 ---
-
-## 📂 Project Structure
-
-```
-chainpilot/
-├── src/
-│   ├── components/
-│   │   ├── ChatWindow.tsx      # Chat interface for AI interactions
-│   │   ├── InputBox.tsx        # Input field for user queries
-│   │   ├── Navbar.tsx          # Branded navigation bar
-│   ├── assets/
-│   │   ├── logo.svg            # Placeholder logo
-│   ├── App.tsx                 # Main app component
-│   ├── index.tsx               # Entry point
-│   ├── index.css               # Tailwind styles
-├── tailwind.config.js          # Tailwind config
-├── package.json                # Project dependencies
-├── README.md                   # You're here!
-```
 
 ---
 
@@ -209,13 +191,3 @@ Chainpilot lowers Web3 barriers with natural language interfaces, smart automati
 * **React, TypeScript, Tailwind, Framer Motion**: Frontend tech stack
 
 > 🔑 **Note**: Replace `YOUR_API_KEY` with your actual Nodit API key. For deployment, consider platforms like **Vercel** or **Netlify**.
-
----
-
-Have questions or want to contribute?
-**Open an issue or PR on [GitHub](https://github.com/your-username/chainpilot)**.
-
-```
-
-Let me know if you'd like a version with embedded badges (build, license, etc.) or deployment instructions for Vercel/Netlify.
-```
