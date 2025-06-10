@@ -1,15 +1,12 @@
-Here's your content formatted into a clean and professional `README.md` structure for the **Chainpilot** project:
-
----
-
-````markdown
-# 🚀 Chainpilot
+# Chainpilot
 
 **Chainpilot** is an AI-powered decentralized application (dApp) designed as an in-wallet assistant. It answers user queries like:  
 > “What's my highest gas fee in the past month?”  
 > “Which token has been most profitable?”  
 
-It also suggests or automates smart contract interactions. Built for the **Wavehack/Buildathon**, Chainpilot leverages **Nodit’s Blockchain Model Context Protocol (MCP)**, **Web3 Data API**, and **Node API** to deliver a seamless, multi-chain Web3 experience.
+It also suggests or automates smart contract interactions. 
+
+Chainpilot leverages **Nodit’s Blockchain Model Context Protocol (MCP)**, **Web3 Data API**, and **Node API** to deliver a seamless, multi-chain Web3 experience.
 
 The frontend is built with **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion** to provide a responsive, animated interface with a futuristic Web3 aesthetic.
 
@@ -58,7 +55,7 @@ Chainpilot aligns with the Wavehack/Buildathon’s **AI + Automation** theme by:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/chainpilot.git
+   git clone https://github.com/Valortin/Chainpilot.git
    cd chainpilot
 ````
 
