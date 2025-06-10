@@ -22,9 +22,7 @@ The frontend is built with **React**, **TypeScript**, **Tailwind CSS**, and **Fr
 
 ---
 
-## 🎯 Buildathon Alignment
-
-Chainpilot aligns with the Wavehack/Buildathon’s **AI + Automation** theme by:
+## Chain Alignment
 
 - Integrating Nodit’s MCP for AI-driven, real-time blockchain querying.
 - Using Web3 Data API for wallet analytics.
