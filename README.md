@@ -1,189 +1,176 @@
 # Chainpilot
 
-**Chainpilot** is an AI-powered decentralized application (dApp) designed as an in-wallet assistant. It answers user queries like:  
-> “What's my highest gas fee in the past month?”  
-> “Which token has been most profitable?”  
+**Chainpilot** is an AI-powered decentralized application (dApp) built to serve as an in-wallet AI assistant that answers user queries about wallet activity (e.g., "What's my highest gas fee?" or "Show my recent transactions") and supports basic smart contract interactions. Chainpilot leverages **Nodit’s Blockchain Model Context Protocol (MCP)**, **Web3 Data API**, and **Node API** to deliver a seamless, multi-chain Web3 experience.
 
-It also suggests or automates smart contract interactions. 
-
-Chainpilot leverages **Nodit’s Blockchain Model Context Protocol (MCP)**, **Web3 Data API**, and **Node API** to deliver a seamless, multi-chain Web3 experience.
-
-The frontend is built with **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion** to provide a responsive, animated interface with a futuristic Web3 aesthetic.
+The frontend is built with **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**, featuring a responsive, animated UI with a futuristic Web3 aesthetic. This README provides setup instructions and details on Nodit integration.
 
 ---
 
-## ✨ Features
-
-- **AI-Powered Assistant**: Ask natural language questions powered by Nodit’s MCP.
-- **Wallet Insights**: Query historical data such as gas fees and token transfers using Nodit’s Web3 Data API.
-- **Automation**: Suggest or trigger smart contract interactions via Nodit’s Node API.
-- **Sleek UI**: Responsive dark mode UI with neon accents and smooth animations.
-- **Multi-Chain Support**: Compatible with Ethereum, XRPL, Aptos, and more via Nodit.
-
----
-
-## Chain Alignment
-
-- Integrating Nodit’s MCP for AI-driven, real-time blockchain querying.
-- Using Web3 Data API for wallet analytics.
-- Automating smart contract interactions with the Node API.
-- Delivering an interactive, animated, and modern frontend UI.
+## 🚀 Features
+- **AI Assistant**: Ask natural language questions about wallet activity, processed via Nodit’s MCP.
+- **Wallet Insights**: View transaction history and gas fees using Nodit’s Web3 Data API.
+- **On-Chain Queries**: Check ETH balance using Nodit’s Node API.
+- **Multi-Chain Support**: Designed for Ethereum, with plans for Aptos, XRPL, and more via Nodit.
+- **Enhanced UI**: Dark theme with neon accents, animated chat, and wallet sidebar.
 
 ---
 
-## 🛠 Tech Stack
+## 🎯 Wavehack/Buildathon Alignment
+Chainpilot addresses the Buildathon’s **AI + Automation** theme by:
+- Using **Nodit MCP** to enable AI-driven blockchain queries.
+- Leveraging **Web3 Data API** for real-time wallet insights.
+- Implementing **Node API** for on-chain interactions.
+- Offering an intuitive UI to lower Web3 adoption barriers.
 
-- **Frontend**: React, TypeScript, Tailwind CSS, Framer Motion  
-- **Backend (Planned)**: Nodit MCP, Web3 Data API, Node API  
-- **Chains**: Ethereum, XRPL, Aptos (via Nodit)  
-- **AI**: Integration placeholder for LLMs (e.g., Claude, ChatGPT) via Nodit MCP
+---
+
+## 🛠️ Tech Stack
+- **Frontend**: React, TypeScript, Tailwind CSS, Framer Motion
+- **Wallet**: MetaMask (for user authentication)
+- **Nodit Features**:
+  - **MCP**: AI query processing
+  - **Web3 Data API**: Transaction history
+  - **Node API**: ETH balance queries
+- **Blockchains**: Ethereum (with future support for Aptos, XRPL)
 
 ---
 
 ## 📋 Prerequisites
-
-- **Node.js**: v16 or higher  
-- **npm**: v8 or higher  
-- **Nodit API Key**: Get one at [nodit.io](https://nodit.io)  
-- **Web3 Wallet**: MetaMask or compatible wallet (for interaction features)
+- **Node.js**: v16 or higher
+- **npm**: v8 or higher
+- **Nodit API Key**: Obtain at [nodit.io](https://nodit.io).
+- **MetaMask**: Installed in your browser.
+- **Nodit MCP Server**: Running locally (optional for full AI integration).
 
 ---
 
 ## ⚙️ Installation
-
-1. **Clone the Repository**
-
-```bash
-   git clone https://github.com/Valortin/Chainpilot.git
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/valortin/chainpilot.git
    cd chainpilot
-````
 
-2. **Install Dependencies**
+    Install Dependencies:
+    bash
 
-   ```bash
-   npm install
-   ```
+    npm install
 
-3. **Set Up Tailwind CSS**
+    Configure Nodit API Key:
+    Replace YOUR_NODIT_API_KEY in src/services/noditService.ts with your actual key.
+    (Optional) Set Up Nodit MCP Server:
+    bash
 
-   **`tailwind.config.js`**
+    git clone --recurse-submodules https://github.com/noditlabs/nodit-mcp-server.git
+    cd nodit-mcp-server
+    npm install
+    npm run build
+    npm run start
 
-   ```javascript
-   /** @type {import('tailwindcss').Config} */
-   module.exports = {
-     content: ["./src/**/*.{js,jsx,ts,tsx}"],
-     theme: { extend: {} },
-     plugins: [],
-   }
-   ```
+    Configure .cursor/mcp.json:
+    json
 
-   **`src/index.css`**
-
-   ```css
-   @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
-
-   body {
-     margin: 0;
-     font-family: 'Inter', sans-serif;
-     background-color: #1a202c;
-     color: #e2e8f0;
-   }
-   ```
-
-4. **Run the Development Server**
-
-   ```bash
-   npm start
-   ```
-
-   Visit `http://localhost:3000` to view the app.
-
----
-
-## 🎨 UI Features
-
-* **Navbar**: Branded “Chainpilot” logo with animated entry.
-* **Chat Window**: Fade-in responses and history of wallet queries.
-* **Input Box**: Clean, intuitive input with smooth UX.
-* **Theme**: Dark mode with cyan/glow accents for Web3 vibes.
-
----
-
-## 🔗 Nodit Integration (Planned)
-
-### Nodit MCP
-
-Setup example:
-
-```json
-{
-  "mcpServers": {
-    "nodit": {
-      "command": "npx",
-      "args": ["@noditlabs/nodit-mcp-server@latest"],
-      "env": { "NODIT_API_KEY": "YOUR_API_KEY" }
+    {
+      "mcpServers": {
+        "nodit": {
+          "command": "npx",
+          "args": ["@noditlabs/nodit-mcp-server@latest"],
+          "env": { "NODIT_API_KEY": "YOUR_NODIT_API_KEY" }
+        }
+      }
     }
-  }
-}
-```
 
-Run the MCP server:
+    Run the App:
+    bash
 
-```bash
-git clone --recurse-submodules https://github.com/noditlabs/nodit-mcp-server.git
-cd nodit-mcp-server
-npm install
-npm run start
-```
+    npm start
 
-### Web3 Data API
+    Open http://localhost:3000.
 
-Example: Query token transfers
+## Project Structure
 
-```bash
-curl --request POST \
-  --url https://web3.nodit.io/v1/ethereum/mainnet/token/getTokenTransfersByAccount \
-  --header 'X-API-KEY: YOUR_API_KEY' \
-  --data '{
-    "accountAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-    "fromDate": "2025-01-01T00:00:00+00:00",
-    "toDate": "2025-01-31T00:00:00+00:00"
-  }'
-```
+chainpilot/
+├── src/
+│   ├── components/
+│   │   ├── ChatWindow.tsx      # Chat interface
+│   │   ├── InputBox.tsx        # Query input
+│   │   ├── Navbar.tsx          # Navigation
+│   │   ├── WalletSidebar.tsx   # Wallet and chain selection
+│   ├── services/
+│   │   ├── noditService.ts     # Nodit API/MCP logic
+│   │   ├── walletService.ts    # MetaMask connection
+│   ├── types/
+│   │   ├── noditTypes.ts       # Nodit response types
+│   ├── App.tsx                 # Main component
+│   ├── index.tsx               # Entry point
+│   ├── index.css               # Tailwind styles
+├── tailwind.config.js          # Tailwind config
+├── package.json                # Dependencies
+├── README.md                   # This file
 
-### Node API
+## UI Enhancements
 
-Planned support for JSON-RPC based smart contract interactions (e.g., token swaps).
+    Wallet Sidebar: Connect MetaMask and select chains (Ethereum, Aptos, XRPL).
+    Chat Window: Loading animations and improved message styling.
+    Animations: Smooth transitions using Framer Motion.
+    Theme: Dark mode with cyan accents for Web3 aesthetic.
+
+## Nodit Integration
+
+    Nodit MCP:
+        Processes queries like “Show recent transactions” or “What’s my ETH balance?”.
+        Currently mocked; full integration requires a running MCP server.
+    Web3 Data API:
+        Endpoint: /transactions/getTransactionHistoryByAccount
+        Example: Fetches recent transactions for a wallet address.
+    Node API:
+        Method: eth_getBalance
+        Example: Retrieves ETH balance in real-time.
+
+## Future Enhancements
+
+    Full MCP Integration: Connect to an LLM (e.g., Claude) for advanced query processing.
+    Automation: Suggest and execute actions (e.g., token swaps) via Node API.
+    Analytics: Visualize wallet data with charts.
+    Multi-Chain: Expand to Aptos, XRPL, and other Nodit-supported chains.
+
+
+### Unique Advantages
+
+    Natural Language Queries: Simplifies Web3 interaction for non-technical users.
+    Multi-Chain Insights: Supports multiple blockchains via Nodit.
+    Automation Potential: Future features will automate DeFi actions.
+
+📜 License
+MIT License. See LICENSE.
+🙌 Acknowledgments
+
+    Nodit: For robust Web3 infrastructure.
+    Wavehack/Buildathon: For inspiring innovation.
+    React, TypeScript, Tailwind CSS, Framer Motion: For a modern frontend.
+
+
+- **Nodit Integration**: The updated code uses MCP (mocked), Web3 Data API, and Node API, addressing the feedback about missing Nodit features.
+- **UI/UX Improvements**: The wallet sidebar, loading animations, and improved chat styling enhance usability and clarity.
+- **Unique Advantages**: Chainpilot’s focus on natural language queries and multi-chain support differentiates it as an accessible, AI-driven wallet assistant.
+- **Creative Utilization**: The demo showcases Nodit’s real-time data and AI capabilities in a simple, functional way, aligning with the Buildathon’s call for innovation.
 
 ---
 
-## 🚧 Future Enhancements
+### Instructions for Next Steps
+1. **Test the App**:
+   - Replace `YOUR_NODIT_API_KEY` in `noditService.ts` with your actual key from [nodit.io](https://nodit.io).
+   - Run `npm start` and connect MetaMask to test queries like “Show recent transactions” or “What’s my ETH balance?”.
+   - Note: MCP is mocked due to the complexity of setting up a full LLM. For a real demo, run the MCP server as described.
 
-* 🔗 **AI Integration**: Use LLMs (Claude, ChatGPT) via Nodit MCP.
-* 🦊 **Wallet Integration**: MetaMask login + TX signing.
-* 📊 **Analytics Dashboard**: Charts for gas usage, token trends.
-* 🌊 **Wave Animations**: Visual themes to match “Wavehack” branding.
+2. **Deploy for Buildathon**:
+   - Deploy to Vercel:
+     ```bash
+     npm install -g vercel
+     vercel
+     ```
+   - Submit the deployed URL to the Buildathon.
 
----
-
-## 🌟 Why Chainpilot?
-
-Chainpilot lowers Web3 barriers with natural language interfaces, smart automation, and powerful analytics—all from inside your wallet. Perfectly aligned with the **Wavehack/Buildathon** spirit of innovation at the intersection of AI and blockchain.
-
----
-
-## 📜 License
-
-[MIT](LICENSE)
-
----
-
-## 🙌 Acknowledgments
-
-* **Nodit**: APIs + infrastructure
-* **Wavehack/Buildathon**: The inspiration
-* **React, TypeScript, Tailwind, Framer Motion**: Frontend tech stack
-
-> 🔑 **Note**: Replace `YOUR_API_KEY` with your actual Nodit API key. 
+3. **Further Nodit Integration**:
+   - For a full MCP demo, integrate an LLM (e.g., via `@anthropic-ai/sdk`) and run the MCP server.
+   - Expand Web3 Data API calls to include token transfers or NFT metadata.
+   - Add Node API methods for contract interactions (e.g., `eth_call`).
