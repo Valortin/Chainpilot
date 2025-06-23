@@ -46,7 +46,8 @@ Chainpilot addresses the Buildathon’s **AI + Automation** theme by:
 
 ## ⚙️ Installation
 1. **Clone the Repository**:
-   ```bash
+   
+```bash
    git clone https://github.com/valortin/chainpilot.git
    cd chainpilot
 
