@@ -1,18 +1,28 @@
-export interface Transaction {
+export interface TokenTransfer {
   hash: string;
   from: string;
   to: string;
   value: string;
-  gasPrice: string;
+  tokenAddress: string;
   timestamp: string;
 }
 
-export interface TransactionHistoryResponse {
+export interface TokenTransfersResponse {
   data: {
-    transactions: Transaction[];
+    items: TokenTransfer[];
+    totalCount: number;
   };
 }
 
 export interface BalanceResponse {
   balance: string;
+}
+
+export interface StreamEvent {
+  eventType: string;
+  data: {
+    hash: string;
+    value: string;
+    timestamp: string;
+  };
 }
