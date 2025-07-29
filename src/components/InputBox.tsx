@@ -1,31 +1,34 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { processMcpQuery } from '../services/noditService';
 
 interface InputBoxProps {
-  onSend: (text: string) => void;
+  onSend: (text: string, response: string) => void;
+  address: string;
 }
 
-const suggestions = [
-  'Show my token transfers',
-  'What’s my ETH balance?',
-  'Which token is most profitable?',
-];
-
-const InputBox = ({ onSend }: InputBoxProps) => {
+const InputBox = ({ onSend, address }: InputBoxProps) => {
   const [input, setInput] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim()) {
-      onSend(input);
-      setInput('');
-      setShowSuggestions(false);
+    if (!input.trim()) return;
+    onSend(input, 'Processing...');
+    try {
+      const { response } = await processMcpQuery(input, address);
+      onSend(input, response);
+    } catch (err) {
+      setError('Error processing query');
+      onSend(input, 'Error processing query. Try again.');
     }
+    setInput('');
+    setShowSuggestions(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-gray-800 border-t border-gray-700 relative">
+    <form onSubmit={handleSubmit} className="p-4 bg-gray-900 border-t border-gray-700 relative">
       <div className="flex items-center">
         <motion.input
           type="text"
@@ -36,14 +39,13 @@ const InputBox = ({ onSend }: InputBoxProps) => {
           }}
           onFocus={() => setShowSuggestions(input.length > 0)}
           onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-          placeholder="Ask Chainpilot about your wallet..."
-          className="flex-1 p-2 rounded-l-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none"
+          placeholder="Ask Chainpilot (e.g., 'Show my recent transactions')..."
+          className="flex-1 p-3 rounded-l-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
           whileFocus={{ scale: 1.02 }}
-          aria-autocomplete="list"
         />
         <motion.button
           type="submit"
-          className="p-2 bg-cyan-500 text-white rounded-r-lg hover:bg-cyan-600"
+          className="p-3 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white rounded-r-lg hover:from-cyan-600 hover:to-cyan-700"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -51,11 +53,15 @@ const InputBox = ({ onSend }: InputBoxProps) => {
         </motion.button>
       </div>
       {showSuggestions && (
-        <div className="absolute bottom-14 bg-gray-700 rounded-lg w-full max-w-md">
-          {suggestions.map((suggestion, index) => (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute bottom-14 bg-gray-800 rounded-lg w-full max-w-md shadow-lg border border-cyan-400/30"
+        >
+          {['Show my recent transactions', 'What’s my ETH balance?', 'Suggest a trade'].map((suggestion, index) => (
             <div
               key={index}
-              className="p-2 hover:bg-gray-600 cursor-pointer text-gray-200"
+              className="p-2 hover:bg-gray-700 text-gray-200 cursor-pointer"
               onClick={() => {
                 setInput(suggestion);
                 setShowSuggestions(false);
@@ -66,6 +72,7 @@ const InputBox = ({ onSend }: InputBoxProps) => {
           ))}
         </div>
       )}
+      {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
     </form>
   );
 };

@@ -11,32 +11,29 @@ interface ChatWindowProps {
   messages: Message[];
 }
 
-const ChatWindow = ({ messages }: ChatWindowProps) => {
-  return (
-    <div className="flex-1 p-4 overflow-y-auto bg-gray-800">
-      {messages.map((message) => (
-        <motion.div
-          key={message.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className={`mb-4 flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+const ChatWindow = ({ messages }: ChatWindowProps) => (
+  <div className="flex-1 p-4 bg-gray-800 overflow-y-auto">
+    {messages.map((message) => (
+      <motion.div
+        key={message.id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className={`mb-4 flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+      >
+        <div
+          className={`max-w-md p-3 rounded-lg ${
+            message.sender === 'user'
+              ? 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white'
+              : message.loading
+              ? 'bg-gray-700 text-gray-400 animate-pulse'
+              : 'bg-gray-700 text-gray-200'
+          } border-2 border-cyan-400/30`}
         >
-          <div
-            className={`max-w-md rounded-lg p-3 ${
-              message.sender === 'user'
-                ? 'bg-cyan-500 text-white'
-                : message.loading
-                ? 'bg-gray-600 text-gray-300 animate-pulse'
-                : 'bg-gray-700 text-gray-200'
-            } whitespace-pre-wrap`}
-          >
-            {message.text}
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
+          {message.text}
+        </div>
+      </motion.div>
+    ))}
+  </div>
+);
 
 export default ChatWindow;
